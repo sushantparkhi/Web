@@ -5,12 +5,12 @@ ngAutoComplete: Auto Complete Directive
 ui.bootstrap: Bootstrap Tab based on AngularJS
 toaster: For Toast Notification
 External Dependencies Ends*/
-var myApp = angular.module("myApp", ['ngAnimate', 'ngRoute', 'ngAutocomplete', 'ngMap', 'ui.bootstrap', 'toaster','angulartics', 'angulartics.google.analytics'])
+var myApp = angular.module("myApp", ['ngAnimate', 'ngRoute','ngAutocomplete', 'chart.js','ngMap', 'ui.bootstrap','toaster','angulartics', 'angulartics.google.analytics'])
 //Routing Configuration
     .config(function ($routeProvider) {
         $routeProvider
             .when("/", {
-                templateUrl: "login.html"
+                templateUrl: "price.html"
             })
             .when("/price", {
                 templateUrl: "price.html"
@@ -34,6 +34,17 @@ var myApp = angular.module("myApp", ['ngAnimate', 'ngRoute', 'ngAutocomplete', '
             }
         });
     })
+    .config(['ChartJsProvider', function (ChartJsProvider) {
+        // Configure all charts
+        ChartJsProvider.setOptions({
+            chartColors: ['#FF5252', '#FF8A80'],
+            responsive: true
+        });
+        // Configure all line charts
+        ChartJsProvider.setOptions('line', {
+            showLines: true
+        });
+    }])
     //Uber API Endpoint
     .constant("Uber", "https://api.uber.com/v1")
     //Lyft Authentication API Endpoint
